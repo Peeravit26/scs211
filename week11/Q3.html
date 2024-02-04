@@ -1,0 +1,26 @@
+<body>
+    <button onclick="getpreple();">Load preple</button>
+    <div id="content"></div>
+    <script>
+      async function getpreple() {
+        //basic function style
+        try {
+          let promise = await fetch("https://raw.githubusercontent.com/arc6828/SCS211/main/week13/staff.json");
+          let people_obj = await promise.json();
+          console.log("success:", people_obj);
+          let people = people_obj.people;
+          let contentDiv = document.querySelector("#content");
+          for(let item of people){
+              console.log(item);
+              let newDiv = document.createElement("div");
+              newDiv.innerHTML = item.name + " | " + item.education + " | " + item.role + " | " + item.email + " | " + item.phone + " | " + item.image;
+              contentDiv.appendChild(newDiv);
+          }      
+        } catch (error) {
+          console.log("fail", error);
+        }
+      }
+    </script>
+  </body>
+  
+  
